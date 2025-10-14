@@ -85,7 +85,7 @@ def update_hist(location, square_size, color_map):
     df_quantiles.iloc[-1] = 1
     df_quantiles["colors"] = color_scale
     df_quantiles.set_index(color_map, inplace=True)
-    color_scale = [[i, j] for i, j in df_quantiles["colors"].iteritems()]
+    color_scale = [[i, j] for i, j in df_quantiles["colors"].items()]
 
 
     map_fig.update_coloraxes(colorscale=color_scale)

@@ -18,7 +18,7 @@ slider_size = [100, 500, 1000, 10000, 10000000]
 
 controllers = dbc.Row([
                 dcc.Store(id='store-global'),
-                html.Img(id="logo", src=app.get_asset_url("logo_dark.png"), style={'width':'50%'}),
+                html.Img(id="logo", src=app.get_asset_url("cimatec.png"), style={'width':'50%'}),
                 html.H3("Vendas de imóveis - NYC", style={"margin-top": "30px"}),
                 html.P(
                 """Utilize este dashboard para analisar vendas ocorridas na 
