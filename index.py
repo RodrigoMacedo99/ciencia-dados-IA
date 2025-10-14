@@ -4,14 +4,16 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
+from dotenv import load_dotenv
+import os
 from app import app
-
-# Componentes
 from _map import *
 from _controllers import *
 from _histogram import *
 # from globals import *
+
+load_dotenv()
+api_key = os.getenv("API_MAPBOX")
 
 # =======================================
 # Data Ingestion 
@@ -76,7 +78,7 @@ def update_hist(location, square_size, color_map):
 
     # ==========================
     # Map
-    px.set_mapbox_access_token(open("keys/mapbox_token").read())
+    px.set_mapbox_access_token(api_key)
     map_fig = px.scatter_mapbox(df_intermediate, lat="LATITUDE", lon="LONGITUDE", color=color_map, 
                     size="size_m2", size_max=20, zoom=10, opacity=0.4)
 
