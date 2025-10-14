@@ -25,7 +25,7 @@ blockquote {
 .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
   display: inline-block;
   height: 38px;
-  color: #555;
+  color: black;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -36,7 +36,7 @@ blockquote {
   white-space: nowrap;
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid #dbdbdb44;
+  border: 1px solid #FF6600;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -65,7 +65,7 @@ button{
 
 .has-value.Select--single>.Select-control .Select-value .Select-value-label, 
 .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label {
-  color: #cccccc;
+  color:black;
 }
 
 /* Forms –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -73,7 +73,7 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
   height: 38px;
   /* border: 1px solid #D1D1D1; */
   border-radius: 4px;
-  box-shadow: none;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
   box-sizing: border-box;
   font-family: inherit;
   font-size: inherit;
@@ -99,5 +99,5 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 }
 
 .Select-control{
-  border: 0.5px solid #dbdbdb44;
+  border: 0.5px solid #0033A0;
 }
