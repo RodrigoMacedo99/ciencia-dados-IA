@@ -94,8 +94,8 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 
 
 .Select-control, .Select-menu-outer, .Select-multi-value-wrapper, .select-up, .is-open .Select-control {
-  background-color: #1E1E1E;
-  color: white;
+  background-color: #FF6600;
+  color: #0033A0;
 }
 
 .Select-control{

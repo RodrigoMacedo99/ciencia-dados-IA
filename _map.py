@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 
 
 fig = go.Figure()
-fig.update_layout(template="plotly_dark", paper_bgcolor="rgba(0, 0, 0, 0)")
+fig.update_layout(template="plotly", paper_bgcolor="rgba(220, 220, 220, 1)")
 
 
 map = dbc.Row([

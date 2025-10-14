@@ -69,8 +69,9 @@ def update_hist(location, square_size, color_map):
     hist_layout = go.Layout(
         margin=go.layout.Margin(l=10, r=0, t=0, b=50),
         showlegend=False, 
-        template="plotly_dark", 
-        paper_bgcolor="rgba(0, 0, 0, 0)")
+        template="plotly", 
+        paper_bgcolor="white", 
+        plot_bgcolor="lightgray")
     hist_fig.layout = hist_layout
 
     # ==========================
@@ -91,7 +92,7 @@ def update_hist(location, square_size, color_map):
     map_fig.update_coloraxes(colorscale=color_scale)
 
     map_fig.update_layout(mapbox=dict(center=go.layout.mapbox.Center(lat=mean_lat, lon=mean_long)), 
-            template="plotly_dark", paper_bgcolor="rgba(0, 0, 0, 0)", 
+            template="plotly", paper_bgcolor="rgba(220, 220, 220, 1)", 
             margin=go.layout.Margin(l=10, r=10, t=10, b=10),)
     return hist_fig, map_fig
 
