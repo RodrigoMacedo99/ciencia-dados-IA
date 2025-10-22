@@ -57,6 +57,8 @@ app.layout = dbc.Container(
             Input('slider-square-size', 'value'), 
             Input('dropdown-color', 'value')]            
             )
+
+
 def update_hist(location, square_size, color_map):
     if location is None:
             df_intermediate = df_data.copy()
