@@ -1,0 +1,21 @@
+Este conjunto de dados contém os preços de casas em Nova York, oferecendo insights valiosos sobre o mercado imobiliário da região. Ele inclui informações como títulos de corretores, tipos de casas, preços, número de quartos e banheiros, metragem quadrada da propriedade, endereços, estado, áreas administrativas e locais, nomes de ruas e coordenadas geográficas.
+
+Principais Características:
+
+    BROKERTITLE: Título do corretor
+    TYPE: Tipo da casa
+    PRICE: Preço da casa
+    BEDS: Número de quartos
+    BATH: Número de banheiros
+    PROPERTYSQFT: Metragem quadrada da propriedade
+    ADDRESS: Endereço completo da casa
+    STATE: Estado da casa
+    MAIN_ADDRESS: Informações do endereço principal
+    ADMINISTRATIVE_AREA_LEVEL_2: Informações da área administrativa nível 2
+    LOCALITY: Informações da localidade
+    SUBLOCALITY: Informações da sublocalidade
+    STREET_NAME: Nome da rua
+    LONG_NAME: Nome longo
+    FORMATTED_ADDRESS: Endereço formatado
+    LATITUDE: Coordenada de latitude da casa
+    LONGITUDE: Coordenada de longitude da casa

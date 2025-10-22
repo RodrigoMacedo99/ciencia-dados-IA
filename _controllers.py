@@ -35,7 +35,8 @@ controllers = dbc.Row([
                 dcc.Slider(min=0, max=4, id='slider-square-size', value=4,
                 marks = {i: str(j)for i, j in enumerate(slider_size)}),
 
-                html.P("""Variável de análise""", style={"margin-top": "20px"}),
+                # Variável de COR para o Mapa
+                html.P("""Variável de COR (Mapa)""", style={"margin-top": "20px"}),
                 
                 dcc.Dropdown(
                     options=[
@@ -44,12 +45,16 @@ controllers = dbc.Row([
                         {'label': 'SALE PRICE', 'value': 'SALE PRICE'},
                     ],
                     value='SALE PRICE',
-                    id="dropdown-color")
+                    id="dropdown-color"),
+
+                # Variável para o Eixo X do Gráfico de Dispersão (NOVA ANÁLISE)
+                html.P("""Eixo X do Gráfico de Dispersão""", style={"margin-top": "20px"}),
+                dcc.Dropdown(
+                    options=[
+                        {'label': 'GROSS SQUARE FEET', 'value': 'GROSS SQUARE FEET'},
+                        {'label': 'YEAR BUILT', 'value': 'YEAR BUILT'},
+                        {'label': 'TOTAL UNITS', 'value': 'TOTAL UNITS'},
+                    ],
+                    value='GROSS SQUARE FEET',
+                    id="dropdown-scatter-x")
     ])
-
-    
-
-
-
-
-

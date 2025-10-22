@@ -4,14 +4,17 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
+from dotenv import load_dotenv
+import os
+import numpy as np # Import necessário para np.linspace
 from app import app
-
-# Componentes
-from _map import *
-from _controllers import *
-from _histogram import *
+from _map import map
+from _controllers import controllers
+from _histogram import hist
 # from globals import *
+
+load_dotenv()
+api_key = os.getenv("API_MAPBOX")
 
 # =======================================
 # Data Ingestion 
@@ -30,6 +33,9 @@ df_data.loc[df_data["SALE PRICE"] > 50000000, "SALE PRICE"] = 50000000
 df_data.loc[df_data["SALE PRICE"] < 100000, "SALE PRICE"] = 100000
 
 
+# Lista de tamanhos para o slider (copiada de _controllers.py para o callback)
+slider_size = [100, 500, 1000, 10000, 10000000]
+
 # ================================
 # Tempalte
 app.layout = dbc.Container(
@@ -43,40 +49,49 @@ app.layout = dbc.Container(
                         
                         dbc.Col([
                                 map,
-                                hist
+                                hist # Agora é o Scatter Plot
                                 ], md=9),
                 ])
         ], fluid=True, )
 
 # ========================================================
 # Callbacks 
-@app.callback([Output('hist-graph', 'figure'), Output('map-graph', 'figure')],
+# O output agora é 'scatter-graph' e adicionamos o input 'dropdown-scatter-x'
+@app.callback([Output('scatter-graph', 'figure'), Output('map-graph', 'figure')],
             [Input('location-dropdown', 'value'), 
             Input('slider-square-size', 'value'), 
-            Input('dropdown-color', 'value')]            
+            Input('dropdown-color', 'value'),
+            Input('dropdown-scatter-x', 'value')]            
             )
-def update_hist(location, square_size, color_map):
+def update_graphs(location, square_size, color_map, scatter_x):
+    # Lógica de filtragem dos dados
     if location is None:
             df_intermediate = df_data.copy()
     else:
+        # Uso de slider_size local
         size_limit = slider_size[square_size] if square_size is not None else df_data["GROSS SQUARE FEET"].max()
         df_intermediate = df_data[df_data["BOROUGH"] == location] if location != 0 else df_data.copy()
         df_intermediate = df_intermediate[df_intermediate["GROSS SQUARE FEET"] <= size_limit]
 
     # ==========================
-    # Histogram
-    hist_fig = px.histogram(df_intermediate, x=color_map, opacity=0.75)
-    hist_layout = go.Layout(
+    # Scatter Plot (Substituindo o Histograma)
+    scatter_fig = px.scatter(df_intermediate, x=scatter_x, y='SALE PRICE',
+                             color=color_map, opacity=0.75, 
+                             title=f"Relação entre {scatter_x} e Preço de Venda")
+    
+    scatter_layout = go.Layout(
         margin=go.layout.Margin(l=10, r=0, t=0, b=50),
         showlegend=False, 
         template="plotly", 
         paper_bgcolor="white", 
-        plot_bgcolor="lightgray")
-    hist_fig.layout = hist_layout
+        plot_bgcolor="lightgray",
+        height=300) 
+    scatter_fig.layout = scatter_layout
+
 
     # ==========================
     # Map
-    px.set_mapbox_access_token(open("keys/mapbox_token").read())
+    px.set_mapbox_access_token(api_key)
     map_fig = px.scatter_mapbox(df_intermediate, lat="LATITUDE", lon="LONGITUDE", color=color_map, 
                     size="size_m2", size_max=20, zoom=10, opacity=0.4)
 
@@ -94,7 +109,8 @@ def update_hist(location, square_size, color_map):
     map_fig.update_layout(mapbox=dict(center=go.layout.mapbox.Center(lat=mean_lat, lon=mean_long)), 
             template="plotly", paper_bgcolor="rgba(220, 220, 220, 1)", 
             margin=go.layout.Margin(l=10, r=10, t=10, b=10),)
-    return hist_fig, map_fig
+    
+    return scatter_fig, map_fig
 
 
 if __name__ == '__main__':
