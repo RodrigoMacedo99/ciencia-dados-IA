@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from dotenv import load_dotenv
 import os
-import numpy as np # Import necessário para np.linspace
+import numpy as np 
 from app import app
 from _map import map
 from _controllers import controllers
@@ -29,8 +29,8 @@ df_data = df_data[df_data["YEAR BUILT"] > 0]
 df_data["SALE DATE"] = pd.to_datetime(df_data["SALE DATE"])
 
 df_data.loc[df_data["size_m2"] > 10000, "size_m2"] = 10000
-df_data.loc[df_data["SALE PRICE"] > 50000000, "SALE PRICE"] = 50000000
-df_data.loc[df_data["SALE PRICE"] < 100000, "SALE PRICE"] = 100000
+df_data.loc[df_data["SALE PRICE"] > 25000000, "SALE PRICE"] = 25000000
+# df_data.loc[df_data["SALE PRICE"] < 100000, "SALE PRICE"] = 100000
 
 
 # Lista de tamanhos para o slider (copiada de _controllers.py para o callback)
@@ -64,17 +64,17 @@ app.layout = dbc.Container(
             Input('dropdown-scatter-x', 'value')]            
             )
 def update_graphs(location, square_size, color_map, scatter_x):
-    # Lógica de filtragem dos dados
+    #
     if location is None:
             df_intermediate = df_data.copy()
     else:
-        # Uso de slider_size local
+        # slider_size local
         size_limit = slider_size[square_size] if square_size is not None else df_data["GROSS SQUARE FEET"].max()
         df_intermediate = df_data[df_data["BOROUGH"] == location] if location != 0 else df_data.copy()
         df_intermediate = df_intermediate[df_intermediate["GROSS SQUARE FEET"] <= size_limit]
 
     # ==========================
-    # Scatter Plot (Substituindo o Histograma)
+    # Scatter Plot
     scatter_fig = px.scatter(df_intermediate, x=scatter_x, y='SALE PRICE',
                              color=color_map, opacity=0.75, 
                              title=f"Relação entre {scatter_x} e Preço de Venda")

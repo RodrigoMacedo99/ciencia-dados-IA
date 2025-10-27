@@ -4,7 +4,7 @@ from app import app
 
 
 list_of_locations = {
-    "All": 0,
+    "Todos": 0,
     "Manhattan": 1,
     "Bronx": 2,
     "Brooklyn": 3,
@@ -19,8 +19,8 @@ controllers = dbc.Row([
                 html.Img(id="logo", src=app.get_asset_url("cimatec.png"), style={'width':'50%'}),
                 html.H3("Vendas de imóveis - NYC", style={"margin-top": "30px"}),
                 html.P(
-                """Utilize este dashboard para analisar vendas ocorridas na 
-                cidade de New York no período de 1 ano. """
+                """Dashboard para analisar vendas ocorridas na 
+                cidade de New York no período de 1 ano (2016 - 2017) """
                 ),
 
                 html.H4("""Borough""", style={"margin-top": "50px", "margin-bottom": "50px"}),
@@ -40,9 +40,9 @@ controllers = dbc.Row([
                 
                 dcc.Dropdown(
                     options=[
-                        {'label': 'YEAR BUILT', 'value': 'YEAR BUILT'},
-                        {'label': 'TOTAL UNITS', 'value': 'TOTAL UNITS'},
-                        {'label': 'SALE PRICE', 'value': 'SALE PRICE'},
+                        {'label': 'ANO DE CONSTRUÇÃO', 'value': 'YEAR BUILT'},
+                        {'label': 'TOTAL DE UNIDADES', 'value': 'TOTAL UNITS'},
+                        {'label': 'PREÇO DE VENDA', 'value': 'SALE PRICE'},
                     ],
                     value='SALE PRICE',
                     id="dropdown-color"),
@@ -51,9 +51,9 @@ controllers = dbc.Row([
                 html.P("""Eixo X do Gráfico de Dispersão""", style={"margin-top": "20px"}),
                 dcc.Dropdown(
                     options=[
-                        {'label': 'GROSS SQUARE FEET', 'value': 'GROSS SQUARE FEET'},
-                        {'label': 'YEAR BUILT', 'value': 'YEAR BUILT'},
-                        {'label': 'TOTAL UNITS', 'value': 'TOTAL UNITS'},
+                        {'label': 'Área Bruta', 'value': 'GROSS SQUARE FEET'},
+                        {'label': 'Ano de Construção', 'value': 'YEAR BUILT'},
+                        {'label': 'Total de Unidades', 'value': 'TOTAL UNITS'},
                     ],
                     value='GROSS SQUARE FEET',
                     id="dropdown-scatter-x")
