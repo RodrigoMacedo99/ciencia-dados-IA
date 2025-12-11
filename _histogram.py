@@ -19,14 +19,5 @@ fig.update_layout(template="plotly_dark", paper_bgcolor="rgba(0, 0, 0, 0)")
 # go.Figure().layout = hist_layout
 
 hist = dbc.Row([
-                dcc.Graph(id="hist-graph", figure=fig)
-                ], style={"height": "20vh"})
-
-
-
-
-
-
-
-
-
+                dcc.Graph(id="scatter-graph", figure=fig)
+                ], style={"height": "30vh"})

@@ -8,14 +8,6 @@ import plotly.graph_objects as go
 fig = go.Figure()
 fig.update_layout(template="plotly", paper_bgcolor="rgba(220, 220, 220, 1)")
 
-
 map = dbc.Row([
                 dcc.Graph(id="map-graph", figure=fig)
-            ], style={"height": "80vh"})
-
-
-
-
-
-
-
+            ], style={"height": "70vh"})
